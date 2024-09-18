@@ -1,4 +1,5 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import Spinner from './containers/spinner';
 import HomePage from './containers/homepage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Navbar from './components/navbar/index';
@@ -8,6 +9,18 @@ import SignIn from './components/navbar/pages/signin';
 import SignUp from './components/navbar/pages/signup';
 import "./App.css"
 const App: React.FC = () => {
+  const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        // Simulate a delay to show the spinner
+        setTimeout(() => {
+            setLoading(false);
+        }, 2000); // Adjust the delay as needed
+    }, []);
+
+    if (loading) {
+        return <Spinner />;
+    }
   return (
     <BrowserRouter>
       <Navbar />
