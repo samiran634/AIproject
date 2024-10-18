@@ -89,10 +89,33 @@
 .justify-space-between {
   justify-content: space-between;
 }
+.chat-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 90vh;
+  margin-top: 10vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%; /* Adjust this value as needed */
+  /* max-width: 40em;   */
+  padding: 20px;
+  box-sizing: border-box;
+}
 
+@media screen and (max-width: 768px) {
+  .chat-container {
+    width: 100%;
+    max-width: none;
+  }
+}
 .side-bar {
   width: 20rem;
   position: fixed;
+}
+.hide{
+  display: none;
 }
 
 .product-container {

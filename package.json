@@ -1,0 +1,8 @@
+{
+  "name": "AI-project",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
+}

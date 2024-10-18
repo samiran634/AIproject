@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Spinner from './containers/spinner';
 import HomePage from './containers/homepage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -7,6 +7,7 @@ import Protectedpage from './components/navbar/pages/home';
 import About from './components/navbar/pages/about';
 import SignIn from './components/navbar/pages/signin';
 import SignUp from './components/navbar/pages/signup';
+
 import "./App.css"
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
