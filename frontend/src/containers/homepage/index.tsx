@@ -1,14 +1,12 @@
  
  import { useUser } from "@clerk/clerk-react";
  import Top from "./topsecton";
- import ChatContainer from '../../components/chat-bot/chat';
-  import ChatButton from '../../components/chatbutton';
+ 
+  import ChatApp from '../../components/parent';
   let topprops={
     className:"chat-container",
-    children:<ChatContainer/>,
+    children:<ChatApp />,
     ondelete:true,
-    children2:<ChatButton/>,
-   
   }
  
 const HomePage=( )=>{

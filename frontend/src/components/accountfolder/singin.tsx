@@ -9,9 +9,8 @@ export default function LoginForm( ) {
 
   return (
      <>
-     <SignedIn>
-      signin
-     </SignedIn>
+     <SignedIn/>
+     
      </>
   );
 }

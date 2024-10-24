@@ -1,6 +1,5 @@
 import styled from "styled-components";
-import { Button } from "@mui/material";
-import ChatBotImage from '../../imeges/chatbot.png';
+import ChatBotImage from "../../imeges/chatbot.png";  
 const ChatButtonContainer = styled.div`
   position: fixed;
   bottom: 10vh;
@@ -11,15 +10,35 @@ const ChatButtonContainer = styled.div`
   background-position: center;
   width: 100px;
   height: 100px;
+  cursor: pointer;
+  animation: blink-and-shake 3s infinite;
+
+  @keyframes blink-and-shake {
+    0%, 100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
+    45%, 55% {
+      opacity: 0.5;
+    }
+  }
 `;
 
-const ChatButton = () => {
-  return (
-    <ChatButtonContainer>
-      <Button variant="contained" color="primary"  >
-    
-      </Button>
-    </ChatButtonContainer>
-  );
+interface ChatButtonProps {
+  collapsed: boolean;
+  onClick: () => void;
 }
-  export default ChatButton;
+
+const ChatButton = ({ onClick }: ChatButtonProps) => {
+  return (
+    <ChatButtonContainer onClick={onClick} />
+  );
+};
+
+export default ChatButton;
