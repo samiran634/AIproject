@@ -7,7 +7,7 @@ const Container = styled.div`
 const ChatContainer = () => {
     return (
         <Container>
-            <Chat />
+            <Chat onClose={() => { /* handle close action */ }} />
         </Container>
     )
 }

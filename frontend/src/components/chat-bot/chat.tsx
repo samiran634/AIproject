@@ -4,7 +4,7 @@ import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import styled from "styled-components";
 import { Avatar, MainContainer, MessageList, MessageInput, TypingIndicator, ChatContainer, ConversationHeader, Message } from "@chatscope/chat-ui-kit-react";
 
-const HTTP = "http://localhost:4000";
+ 
 
 interface MessageType {
   message: string;
@@ -27,7 +27,7 @@ const CollapsBtn = styled.div`
   right: 0;
   z-index:100;
   cursor: pointer;
-   background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.7);
 `;
 
 const Chat = ({ onClose }: ChatProps) => {
@@ -54,32 +54,81 @@ const Chat = ({ onClose }: ChatProps) => {
 
     setIsTyping(true);
     try {
-      const response = await fetch(`${HTTP}/chat`, {
-        method: "POST",
+      const response = await fetch("https://api.vultrinference.com/v1/chat/completions", {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Authorization': "Bearer Y4EO6EF6XN5YC2IAEERWB3VKHXA42UOT33QA",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({
+          model: "zephyr-7b-beta-Q5_K_M",
+          messages: [
+            {
+              role: "user",
+              content: message
+            }
+          ],
+          max_tokens: 512,
+          seed: -1,
+          temperature: 0.8,
+          top_k: 40,
+          top_p: 0.9,
+          stream: true
+        })
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to send message to ChatGPT");
-      }
+      const reader = response.body?.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let result = "";
 
-      const data = await response.json();
+      const processText = async ({ done, value }: ReadableStreamReadResult<Uint8Array>): Promise<void> => {
+        if (done) {
+          setIsTyping(false);
+          return;
+        }
 
-      if (data.choices && data.choices[0] && data.choices[0].message) {
-        const assistantMessage: MessageType = {
-          message: data.choices[0].message.content,
-          sender: "ChatGPT",
-          direction: "incoming",
-          position: "single",
-        };
-        setMessages([...messages, newMessage, assistantMessage]);
-      }
+        const chunk = decoder.decode(value, { stream: true });
+        const lines = chunk.split('\n');
+
+        for (const line of lines) {
+          if (line.startsWith('data: ')) {
+            const jsonString = line.substring(6).trim();
+
+            if (jsonString === "[DONE]") {
+              setIsTyping(false);
+              return;
+            }
+
+            if (jsonString) {
+              try {
+                const data = JSON.parse(jsonString);
+                if (data.choices && data.choices[0] && data.choices[0].message) {
+                  const assistantMessage: MessageType = {
+                    message: data.choices[0].message.content,
+                    sender: "ChatGPT",
+                    direction: "incoming",
+                    position: "single",
+                  };
+                  setMessages(prevMessages => [...prevMessages, assistantMessage]);
+                }
+              } catch (error) {
+                console.error("Error parsing JSON:", error);
+              }
+            }
+          }
+        }
+
+        if (reader) {
+          await reader.read().then(processText);
+        } else {
+          setIsTyping(false);
+          console.error("Reader is undefined.");
+        }
+      };
+
+      await reader?.read().then(processText);
     } catch (error) {
       console.error("Error sending message to ChatGPT:", error);
-    } finally {
       setIsTyping(false);
     }
   };

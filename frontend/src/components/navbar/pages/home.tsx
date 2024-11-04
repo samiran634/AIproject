@@ -1,4 +1,4 @@
- 
+
 import Top from "../../../containers/homepage/topsecton";
 import {   useUser, RedirectToSignIn } from '@clerk/clerk-react';
 import styled from 'styled-components';
@@ -25,7 +25,7 @@ const ProtectedPage = () => {
    
   <Top>
     <h1 >This page was protected</h1>
-    
+ 
       </Top>
  
   );
