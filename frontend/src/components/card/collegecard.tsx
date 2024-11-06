@@ -15,6 +15,7 @@ interface CollegeData {
 
 interface CollegeCardProps {
     college: CollegeData;
+    key: string;
     }
 
 export default function CollegeCard({ college }: CollegeCardProps) {

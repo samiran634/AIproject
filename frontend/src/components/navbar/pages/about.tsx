@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import jobImage from "../../../imeges/marvin-meyer-SYTO3xs06fU-unsplash.jpg"
+import jobImage from "../../../images/marvin-meyer-SYTO3xs06fU-unsplash.jpg"
 
 // Define the type for props
 type Props = {

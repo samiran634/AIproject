@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import ChatBotImage from "../../imeges/chatbot.png";  
+import ChatBotImage from "../../images/chatbot.png";  
+import { motion } from "framer-motion";
+
+interface ChatButtonProps {
+  onClick: () => void;
+  ondelete?: boolean;
+}
+
 const ChatButtonContainer = styled.div`
   position: fixed;
   bottom: 10vh;
@@ -30,14 +37,18 @@ const ChatButtonContainer = styled.div`
   }
 `;
 
-interface ChatButtonProps {
-  collapsed: boolean;
-  onClick: () => void;
-}
+const ChatButton: React.FC<ChatButtonProps> = ({ onClick, ondelete = false }) => {
+  // Conditionally render based on ondelete prop
+  if (ondelete) return null;
 
-const ChatButton = ({ onClick }: ChatButtonProps) => {
   return (
-    <ChatButtonContainer onClick={onClick} />
+    <motion.div
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.5, duration: 0.5 }}
+    >
+      <ChatButtonContainer onClick={onClick} />
+    </motion.div>
   );
 };
 
