@@ -4,7 +4,13 @@ import { motion } from "framer-motion";
 
 interface ChatButtonProps {
   onClick: () => void;
+  isChatVisible: boolean;
+  onToggle: () => void;
   ondelete?: boolean;
+}
+
+interface ChatBotBtnProps {
+  onClick: () => void;
 }
 
 const ChatButtonContainer = styled.div`
@@ -37,7 +43,7 @@ const ChatButtonContainer = styled.div`
   }
 `;
 
-const ChatButton: React.FC<ChatButtonProps> = ({ onClick, ondelete = false }) => {
+const ChatButton: React.FC<ChatButtonProps> = ({ onClick, isChatVisible, onToggle, ondelete = false }) => {
   // Conditionally render based on ondelete prop
   if (ondelete) return null;
 
@@ -47,8 +53,16 @@ const ChatButton: React.FC<ChatButtonProps> = ({ onClick, ondelete = false }) =>
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.5, duration: 0.5 }}
     >
-      <ChatButtonContainer onClick={onClick} />
+      <ChatButtonContainer onClick={onToggle} />
     </motion.div>
+  );
+};
+
+const ChatBotBtn: React.FC<ChatBotBtnProps> = ({ onClick }) => {
+  return (
+    <button onClick={onClick}>
+      {/* Button content */}
+    </button>
   );
 };
 

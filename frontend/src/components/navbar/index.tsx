@@ -38,7 +38,7 @@ const Navbar: React.FC = () => {
     <header className="heading d-flex align-center fixed top-0 left-0">
       <div className="heading-title-icon d-flex align-center">
         <h1 className="heading-title">
-          <Link className="link" to="/">edu-app</Link>
+          <Link className="link" to="/">mr-counselor</Link>
         </h1>
       </div>
      
@@ -49,6 +49,16 @@ const Navbar: React.FC = () => {
        
           <li className="list-item-inline">
              <UserButton/>
+          </li>
+          <li className="list-item-inline">
+            <Link to="/about" className="link cursor"> 
+                About
+              </Link>
+          </li>
+          <li className="list-item-inline">
+            <Link to="/home" className="link cursor"> 
+                Home
+              </Link>
           </li>
         </ul>
       </nav>

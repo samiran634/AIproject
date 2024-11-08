@@ -1,34 +1,24 @@
-
-import Top from "../../../containers/homepage/topsecton";
-import {   useUser, RedirectToSignIn } from '@clerk/clerk-react';
-import styled from 'styled-components';
  
-let Container = styled.div`
-width: 100%;
-height: 100vh;
-display: flex;
-margin-top: 10rem;
-color: black;
-background-color: red;
-justify-content: center;
-align-items: center;
-`
-const ProtectedPage = () => {
+ 
+import {   useUser } from "@clerk/clerk-react";
+import Container from "../../../containers/Container";  
+import { Navigate } from 'react-router-dom';
 
+const UnProtectedPage = () => {
   const { user } = useUser();
+  if(user){
+    return <Navigate to="/home" />;
+   } 
 
-  if (!user) {
-    return <RedirectToSignIn />;
-  }
 
   return (
-   
-  <Top>
-    <h1 >This page was protected</h1>
+    
  
-      </Top>
+    <Container text="This page is not protected please sign in to use our services"/>
+
+     
  
   );
 };
 
-export default ProtectedPage;
+export default UnProtectedPage;
