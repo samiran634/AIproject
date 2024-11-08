@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "start": "vite preview --port $PORT"
   },
   "dependencies": {
     "@chatscope/chat-ui-kit-react": "^2.0.3",
