@@ -61,7 +61,7 @@ const ChatButton: React.FC<ChatButtonProps> = ({ onClick, isChatVisible, onToggl
 const ChatBotBtn: React.FC<ChatBotBtnProps> = ({ onClick }) => {
   return (
     <button onClick={onClick}>
-      {/* Button content */}
+     
     </button>
   );
 };

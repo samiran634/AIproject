@@ -6,6 +6,8 @@ import axios from "axios";
 const url="https://api.vultrinference.com/v1/chat/completions"
 let apikey="Y4EO6EF6XN5YC2IAEERWB3VKHXA42UOT33QA"
 const HTTP = "http://localhost:4000";
+import { useUser } from "@clerk/clerk-react";
+import { motion } from "framer-motion";
 
 const CollapsBtn = styled.div`
   background-image: url("https://img.icons8.com/?size=50&id=11885&format=png&color=000000");
@@ -56,13 +58,21 @@ async function postRequest(message: string) {
   }
 }
 
-const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose }) => {
-  if (!isVisible) return null; // Render only if visible
+const StyledMainContainer = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 1000; // Ensure it appears above other content
+`;
 
-  const user = { fullName: "sam", imageUrl: "" };
+const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose }) => {
+  const { user } = useUser();
   const [messages, setMessages] = useState<MessageType[]>([
     {
-      message: `Hello ${user.fullName || "User"}, I'm ChatGPT! Ask me anything!`,
+      message: `Hello ${user?.fullName || "User"}, I'm ChatGPT! Ask me anything!`,
       sentTime: "just now",
       sender: "ChatGPT",
       direction: "incoming",
@@ -70,6 +80,8 @@ const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose })
     }
   ]);
   const [isTyping, setIsTyping] = useState(false);
+
+  if (!isVisible) return null; // Render only if visible
 
   const handleSend = async (message: string) => {
     const newMessage: MessageType = {
@@ -116,11 +128,16 @@ const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose })
   };
 
   return (
-    <MainContainer>
+    <StyledMainContainer
+      initial={{ x: "100%" }}
+      animate={{ x: 0 }}
+      exit={{ x: "100%" }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
       <ChatContainer>
         <ConversationHeader>
-          <Avatar src={user.imageUrl || "https://img.icons8.com/?size=100&id=42384&format=png&color=000000"} />
-          <ConversationHeader.Content userName={user.fullName || "User"} />
+          <Avatar src={user?.imageUrl || "https://img.icons8.com/?size=100&id=42384&format=png&color=000000"} />
+          <ConversationHeader.Content userName={user?.fullName || "User"} />
           <ConversationHeader.Actions>
             <CollapsBtn onClick={onToggle} />
           </ConversationHeader.Actions>
@@ -134,7 +151,7 @@ const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose })
 
         <MessageInput placeholder="Type message here" onSend={handleSend} />
       </ChatContainer>
-    </MainContainer>
+    </StyledMainContainer>
   );
 };
 
