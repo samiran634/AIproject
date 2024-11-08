@@ -1,20 +1,13 @@
-import styled from 'styled-components';
-
 interface Props {
   text: string;
+  style?: React.CSSProperties; // Add this line to include the style prop
 }
 
-const StyledComponent = styled.div`
-  /* Add your styles here */
-`;
-
-const Container = ({ text }: Props) => {
-  return (
-    <StyledComponent>
-      {text}
-    </StyledComponent>
-  );
-};
+const Container: React.FC<Props> = ({ text, style }) => (
+  <div style={style}>
+    {text}
+  </div>
+);
 
 export default Container;
 

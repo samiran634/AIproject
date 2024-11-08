@@ -32,7 +32,7 @@ function HomePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:4000/data");
+        const response = await fetch("http://139.84.177.139:4000/data");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
