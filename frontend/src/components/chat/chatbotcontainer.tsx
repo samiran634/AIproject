@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Avatar, MainContainer, MessageList, MessageInput, TypingIndicator, ChatContainer, ConversationHeader, Message } from "@chatscope/chat-ui-kit-react";
 import axios from "axios";
 const url="https://api.vultrinference.com/v1/chat/completions"
-let apikey="Y4EO6EF6XN5YC2IAEERWB3VKHXA42UOT33QA"
+let apikey=import.meta.env.VITE_API_KEY
 const HTTP = "http://localhost:4000";
 import { useUser } from "@clerk/clerk-react";
 import { motion } from "framer-motion";
