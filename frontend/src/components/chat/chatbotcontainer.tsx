@@ -1,11 +1,11 @@
 import { useState } from "react";
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import styled from "styled-components";
-import { Avatar, MainContainer, MessageList, MessageInput, TypingIndicator, ChatContainer, ConversationHeader, Message } from "@chatscope/chat-ui-kit-react";
+import { Avatar , MessageList, MessageInput, TypingIndicator, ChatContainer, ConversationHeader, Message } from "@chatscope/chat-ui-kit-react";
 import axios from "axios";
 const url="https://api.vultrinference.com/v1/chat/completions"
 let apikey=import.meta.env.VITE_API_KEY
-const HTTP = "http://localhost:4000";
+// const HTTP = "http://localhost:4000";
 import { useUser } from "@clerk/clerk-react";
 import { motion } from "framer-motion";
 
@@ -66,9 +66,11 @@ const StyledMainContainer = styled(motion.div)`
   height: 100%;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000; // Ensure it appears above other content
+  backgroundImage: linear-gradient(135deg, #f3ec78, #af4261); // Add linear gradient
+  border-radius: 15px; // Add rounded corners
 `;
 
-const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle, onClose }) => {
+const ChatBotContainer: React.FC<ChatProps> = ({ isVisible, onToggle  }) => {
   const { user } = useUser();
   const [messages, setMessages] = useState<MessageType[]>([
     {

@@ -9,10 +9,6 @@ interface ChatButtonProps {
   ondelete?: boolean;
 }
 
-interface ChatBotBtnProps {
-  onClick: () => void;
-}
-
 const ChatButtonContainer = styled.div`
   position: fixed;
   bottom: 10vh;
@@ -43,7 +39,7 @@ const ChatButtonContainer = styled.div`
   }
 `;
 
-const ChatButton: React.FC<ChatButtonProps> = ({ onClick, isChatVisible, onToggle, ondelete = false }) => {
+const ChatButton: React.FC<ChatButtonProps> = ({   onToggle, ondelete = false }) => {
   // Conditionally render based on ondelete prop
   if (ondelete) return null;
 
@@ -55,14 +51,6 @@ const ChatButton: React.FC<ChatButtonProps> = ({ onClick, isChatVisible, onToggl
     >
       <ChatButtonContainer onClick={onToggle} />
     </motion.div>
-  );
-};
-
-const ChatBotBtn: React.FC<ChatBotBtnProps> = ({ onClick }) => {
-  return (
-    <button onClick={onClick}>
-     
-    </button>
   );
 };
 

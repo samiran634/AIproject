@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import   { useState, useEffect } from "react";
 import ChatHandeler from "../../components/chat/chat-handeler";
 import { RedirectToSignIn, useUser } from "@clerk/clerk-react";
 import Top from "./topsecton";
@@ -12,7 +12,7 @@ interface CollegeData {
   "branch cutoff": string;
   image: string;
 }
-  
+
 function HomePage() {
   const { user } = useUser();
   const [isChatVisible, setIsChatVisible] = useState(false);

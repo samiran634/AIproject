@@ -4,11 +4,11 @@ import { useAuth } from '@clerk/clerk-react'
 import React from 'react';
 
 const Navbar: React.FC = () => {
-  const { getToken, isLoaded, isSignedIn } = useAuth()
+  const {  isSignedIn } = useAuth()
   console.log(useUser);
   if(!isSignedIn){
     return (
-      <header className="heading d-flex align-center fixed top-0 left-0">
+      <header className="heading d-flex align-center fixed top-0 left-0" style={{ background: 'linear-gradient(to right, #add8e6, #ffffff)' }}>
         <div className="heading-title-icon d-flex align-center">
           <h1 className="heading-title">
             <Link className="link" to="/">mr-counselor</Link>
@@ -35,7 +35,7 @@ const Navbar: React.FC = () => {
   }
   else {
   return (
-    <header className="heading d-flex align-center fixed top-0 left-0">
+    <header className="heading d-flex align-center fixed top-0 left-0" style={{ background: 'linear-gradient(to right, #add8e6, #ffffff)' }}>
       <div className="heading-title-icon d-flex align-center">
         <h1 className="heading-title">
           <Link className="link" to="/">mr-counselor</Link>
