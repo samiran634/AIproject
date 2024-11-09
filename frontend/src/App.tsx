@@ -8,16 +8,17 @@ import UnProtectedPage from './components/navbar/pages/home';
 import About from './components/navbar/pages/about';
 import SignIn from './components/navbar/pages/signin';
 import SignUp from './components/navbar/pages/signup';
-const text = `Enhanced Accessibility: Automated scheduling and online counseling sessions can make counseling more accessible, especially for students who may hesitate to seek help. Automated notifications and reminders also help students remember appointments, reducing no-shows.
-Data-Driven Personalization: By analyzing students’ academic performance, behavioral patterns, and feedback, counselors can gain a deeper understanding of each student's needs. Automation can provide counselors with real-time data insights, allowing for personalized advice and interventions, increasing the effectiveness of each session.
+const text = `Enhanced accessibility is one of the key benefits of automation in counseling, as automated scheduling and online counseling sessions can make services more reachable, particularly for students who may be hesitant to seek help. Automated notifications and reminders also play a significant role in helping students remember appointments, which reduces no-shows and ensures they receive the support they need.
 
-Administrative Efficiency: Automated systems can manage records, track student progress, and provide counselors with a unified view of each student's history. This saves counselors from time-consuming tasks, enabling them to focus more on meaningful interactions.
+With data-driven personalization, automation allows counselors to analyze students' academic performance, behavioral patterns, and feedback. This provides a deeper understanding of each student's needs and offers counselors real-time data insights for more tailored advice and interventions, enhancing the effectiveness of each session.
 
-24/7 Resource Access: Through automated digital platforms, students can access resources like mental health materials, career guidance articles, or academic planning tools at any time. This encourages proactive help-seeking behavior, as students don’t have to wait for scheduled sessions to get answers or resources.
+Administrative efficiency is greatly improved with automated systems that manage records, track student progress, and provide a unified view of each student’s history. This reduces the time counselors spend on administrative tasks and enables them to focus more on meaningful interactions with students.
 
-Early Intervention & Monitoring: Automated alerts can notify counselors about students at risk of issues like academic struggles, absenteeism, or mental health challenges. This proactive approach allows for early interventions that can make a critical difference in students' well-being and academic success.
+Additionally, 24/7 access to resources is made possible through digital platforms, allowing students to access mental health materials, career guidance, or academic planning tools whenever they need. This encourages proactive help-seeking behavior, as students do not have to wait for scheduled sessions to obtain valuable information or resources.
 
-Improved Follow-Up & Consistency: Automation helps counselors follow up on students more effectively, sending reminders or suggestions for continued progress. This consistency in support can help students feel more connected to their goals and progress.`
+Automation also supports early intervention and monitoring, with automated alerts notifying counselors about students who may be at risk for issues like academic struggles, absenteeism, or mental health challenges. This proactive approach allows for timely interventions that can make a critical difference in students’ well-being and academic success.
+
+Finally, improved follow-up and consistency are facilitated by automation, which helps counselors keep in touch with students more effectively by sending reminders or suggestions to support continued progress. This consistent support fosters a stronger connection to their goals and promotes long-term progress for students.`
 import "./App.css"
 const App: React.FC = () => {
   const [loading, setLoading] = useState(true);
