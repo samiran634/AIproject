@@ -17,7 +17,7 @@ const Containerdiv = styled.div`
       margin-top: 20%;
     }
 
-    @media (max-width: 320px) {
+    @media (max-width: 500px) {
       margin-top: 20em;
     }
 `;
